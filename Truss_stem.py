@@ -408,7 +408,7 @@ class TrussView():
 
     def drawAGrid(self, DeltaX=10, DeltaY=10, Height=320, Width=180, CenterX=120, CenterY=60):
         """
-        This makes a grid for reference.  No snapping to grid enabled.
+        This creates a reference grid. Snapping to the grid is not enabled.
         :param DeltaX: grid spacing in x direction
         :param DeltaY: grid spacing in y direction
         :param Height: height of grid (y)
@@ -540,8 +540,9 @@ class TrussView():
 class RigidLink(qtw.QGraphicsItem):
     def __init__(self, stX, stY, enX, enY, radius=10, parent=None, pen=None, brush=None):
         """
-        This is a custom class for drawing a rigid link.  The paint function executes everytime the scene
-        which holds the link is updated.  The steps to making the link are:
+        This custom class is designed for drawing a rigid link.
+        The paint function is called every time the scene containing the link is refreshed.
+        The steps to making the link are:
         1. Specify the start and end x,y coordinates of the link
         2. Specify the radius (i.e., the width of the link)
         3. Compute the length of the link
@@ -594,10 +595,9 @@ class RigidLink(qtw.QGraphicsItem):
 
     def paint(self, painter, option, widget=None):
         """
-        This function creates a path painter the paints a semicircle around the start point (ccw), a straight line
-        offset from the main axis of the link, a semicircle around the end point (ccw), and a straight line offset from
-        the main axis.  It then assigns a pen and brush.  Finally, it draws a circle at the start and end points to
-        indicate the pivot points.
+        This function uses a path painter to draw a counterclockwise semicircle starting at the initial point, followed by a straight line that is offset from the link's main axis.
+        It then draws another counterclockwise semicircle at the endpoint, along with a second straight line also offset from the main axis.
+        After setting up the pen and brush, the function concludes by drawing circles at both the start and endpoint to mark the pivot points.
         :param painter:
         :param option:
         :param widget:

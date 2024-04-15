@@ -640,6 +640,41 @@ class RigidLink(qtw.QGraphicsItem):
 
 
 class RigidPivotPoint(qtw.QGraphicsItem):
+     """
+    A custom QGraphicsItem that represents a pivot point with a complex geometric design.
+
+    Attributes:
+        x (float): The x-coordinate of the center of the pivot.
+        y (float): The y-coordinate of the center of the pivot.
+        pen (QPen, optional): The pen used for drawing lines and borders.
+        brush (QBrush, optional): The brush used for filling shapes.
+        height (float): The total height of the pivot.
+        width (float): The total width of the pivot.
+        radius (float): The radius used for arcs and circles within the pivot.
+        rect (QRectF): The bounding rectangle of the pivot item.
+        rotationAngle (float): The current rotation angle of the pivot in degrees.
+
+    Parameters:
+        ptX (float): The x-coordinate for the center of the pivot.
+        ptY (float): The y-coordinate for the center of the pivot.
+        pivotHeight (float): The height of the pivot.
+        pivotWidth (float): The width of the pivot.
+        parent (QGraphicsItem, optional): The parent item in the QGraphics scene. Defaults to None.
+        pen (QPen, optional): The pen used for the pivot's outline. Defaults to None.
+        brush (QBrush, optional): The brush used for the pivot's fill. Defaults to None.
+        rotation (float, optional): The initial rotation angle of the pivot. Defaults to 0.
+
+    Methods:
+        boundingRect() -> QRectF:
+            Returns the bounding rectangle of the item, which is necessary for the QGraphics framework.
+
+        rotate(angle: float):
+            Sets the rotation angle of the pivot to a specific angle.
+
+        paint(painter: QPainter, option: QStyleOptionGraphicsItem, widget: Optional[QWidget] = None):
+            Handles the painting (drawing) of the pivot point. It calculates the necessary geometric transformations
+            and draws the pivot point along with its supporting structures.
+    """
     def __init__(self, ptX, ptY, pivotHeight, pivotWidth, parent=None, pen=None, brush=None, rotation=0):
         super().__init__(parent)
         self.x = ptX
